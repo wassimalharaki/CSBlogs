@@ -8,8 +8,6 @@ CSBlogs is a web development project that serves as a platform for sharing and d
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -41,7 +39,7 @@ To run the CSBlogs project locally, follow these steps:
 4. Set up MongoDB:
 
     - Install MongoDB on your machine.
-    - Create a MongoDB database for the project.
+    - If MongoDB is running on a port different than 27017, change the port in /api/index.js:17
 
 5. Start the development server:
 
