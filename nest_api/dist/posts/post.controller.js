@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostsController = void 0;
 const common_1 = require("@nestjs/common");
 const post_service_1 = require("./post.service");
+const swagger_1 = require("@nestjs/swagger");
 let PostsController = class PostsController {
     constructor(postService) {
         this.postService = postService;
@@ -54,12 +55,14 @@ let PostsController = class PostsController {
 exports.PostsController = PostsController;
 __decorate([
     (0, common_1.Get)('/'),
+    (0, swagger_1.ApiOperation)({ summary: 'Returns all posts' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getAllPosts", null);
 __decorate([
     (0, common_1.Get)('/:id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Receives id from params => returns post if exists' }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -67,6 +70,21 @@ __decorate([
 ], PostsController.prototype, "getPostById", null);
 __decorate([
     (0, common_1.Post)('/'),
+    (0, swagger_1.ApiOperation)({ summary: 'Receives title, description, username, and photo from body => creates and returns a post' }),
+    (0, swagger_1.ApiBody)({
+        type: 'object',
+        required: true,
+        schema: {
+            type: 'object',
+            properties: {
+                title: { type: 'string', description: 'Post\'s title', example: "C++" },
+                desc: { type: 'string', description: 'Post\'s description', example: "C++ is easy to learn!" },
+                username: { type: 'string', description: 'User\'s username', example: "wassim" },
+                photo: { type: 'string', description: 'Post\'s image name', example: "1700736851541sieve_eratosthenes.png" },
+            },
+            required: ['title', 'desc', 'username']
+        }
+    }),
     __param(0, (0, common_1.Body)('title')),
     __param(1, (0, common_1.Body)('desc')),
     __param(2, (0, common_1.Body)('username')),
@@ -77,6 +95,21 @@ __decorate([
 ], PostsController.prototype, "createPost", null);
 __decorate([
     (0, common_1.Put)('/'),
+    (0, swagger_1.ApiOperation)({ summary: 'Receives id, title, description, and username from body => updates and returns a post' }),
+    (0, swagger_1.ApiBody)({
+        type: 'object',
+        required: true,
+        schema: {
+            type: 'object',
+            properties: {
+                id: { type: 'string', description: 'Post\'s image name', example: "655f1c23f5e4ed0a345a8f0d" },
+                username: { type: 'string', description: 'User\'s username', example: "wassim" },
+                title: { type: 'string', description: 'Post\'s title', example: "C++" },
+                desc: { type: 'string', description: 'Post\'s description', example: "C++ is easy to learn!" },
+            },
+            required: ['title', 'desc', 'username']
+        }
+    }),
     __param(0, (0, common_1.Body)('id')),
     __param(1, (0, common_1.Body)('username')),
     __param(2, (0, common_1.Body)('title')),
@@ -87,6 +120,18 @@ __decorate([
 ], PostsController.prototype, "updatePost", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Receives id from params, username from body => deletes a post if exists and belongs to user' }),
+    (0, swagger_1.ApiBody)({
+        type: 'object',
+        required: true,
+        schema: {
+            type: 'object',
+            properties: {
+                username: { type: 'string', description: 'User\'s username', example: "wassim" },
+            },
+            required: ['username']
+        }
+    }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)('username')),
     __metadata("design:type", Function),
@@ -94,6 +139,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PostsController.prototype, "deletePost", null);
 exports.PostsController = PostsController = __decorate([
+    (0, swagger_1.ApiTags)('posts'),
     (0, common_1.Controller)('api/posts'),
     __metadata("design:paramtypes", [post_service_1.PostsService])
 ], PostsController);

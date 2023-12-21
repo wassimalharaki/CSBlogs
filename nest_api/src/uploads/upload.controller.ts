@@ -6,12 +6,14 @@ import {
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { storage } from "./storage.config"
+import { ApiExcludeController } from "@nestjs/swagger";
   
   
 /**
  * Controller for handling file uploads.
  */
 @Controller("api/upload")
+@ApiExcludeController()
 export class UploadController {
     /**
      * Uploads a file.

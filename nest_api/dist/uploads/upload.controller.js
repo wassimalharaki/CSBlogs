@@ -16,6 +16,7 @@ exports.UploadController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const storage_config_1 = require("./storage.config");
+const swagger_1 = require("@nestjs/swagger");
 let UploadController = class UploadController {
     async upload(file) {
         return file;
@@ -31,6 +32,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UploadController.prototype, "upload", null);
 exports.UploadController = UploadController = __decorate([
-    (0, common_1.Controller)("api/upload")
+    (0, common_1.Controller)("api/upload"),
+    (0, swagger_1.ApiExcludeController)()
 ], UploadController);
 //# sourceMappingURL=upload.controller.js.map
