@@ -4,7 +4,7 @@ const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 
 //UPDATE
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
   if (req.body.username == '')
     delete req.body.username;
   if (req.body.email == '')

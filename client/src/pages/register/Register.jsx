@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+//6Lc4yDgpAAAAAFGRvUjglgmTOn-I7wBgxiDoV-WV
 import { Link } from "react-router-dom";
 import "./register.css";
 
@@ -8,6 +10,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [can, setCan] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,10 +51,14 @@ export default function Register() {
           placeholder="Enter your password..."
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="registerButton" type="submit">
+        <button className="registerButton" type="submit"  disabled={!can}>
           Register
         </button>
       </form>
+      <ReCAPTCHA style={{marginTop:20}}
+         sitekey="6Lc4yDgpAAAAAFGRvUjglgmTOn-I7wBgxiDoV-WV"
+         onChange={(val) => setCan(true)}          
+       />
       <button className="registerLoginButton">
         <Link className="link" to="/login">
           Login

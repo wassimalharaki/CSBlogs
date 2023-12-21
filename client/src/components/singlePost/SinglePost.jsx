@@ -18,9 +18,10 @@ export default function SinglePost() {
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get("/posts/" + path);
-      setPost(res.data);
-      setTitle(res.data.title);
-      setDesc(res.data.desc);
+      setPost(res.data.post);
+      setTitle(res.data.post.title);
+      setDesc(res.data.post.desc);
+      console.log(res.data.post);
     };
     getPost();
   }, [path]);
@@ -36,7 +37,8 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axios.put(`/posts`, {
+        id: post._id,
         username: user.username,
         title,
         desc,
