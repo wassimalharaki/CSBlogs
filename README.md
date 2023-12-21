@@ -39,7 +39,7 @@ To run the CSBlogs project locally, follow these steps:
 4. Set up MongoDB:
 
     - Install MongoDB on your machine.
-    - If MongoDB is running on a port different than 27017, change the port in /api/index.js:17
+    - If MongoDB is running on a port different than 27017, change the port in nest_api\src\app.module.ts:15
 
 5. Start the development server:
 
@@ -63,3 +63,4 @@ To run the CSBlogs project locally, follow these steps:
 - **Express:** Web application framework for building robust APIs.
 - **React:** Frontend library for building user interfaces.
 - **Node.js:** JavaScript runtime for server-side development.
+- **Nest.js:** Progressive Node.js framework that helps build server-side applications.
